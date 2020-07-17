@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.core.min.js"></script>
+    <script type="text/paperscript"  canvas="myCanvas" >
+        var circles = [];
+        var p = document.querySelector("p");
+        
+        function onKeyDown(event) {
+            p.style.display = "none";
+             var maxPoint = new Point(view.size.width, view.size.height);
+             var randomPoint = Point.random();
+             var point = randomPoint * maxPoint;
+             var newCircle = new Path.Circle(point, 100);
+             newCircle.fillColor = randomColor();
+             circles.push(newCircle);
+             } 
+             
+         function randomColor(){
+             return "rgba(" + Math.floor(Math.random() * 255) + ", " +Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ")";
+         }
+        
+         function onFrame(event){
+             for (var i = 0; i < circles.length; i++){
+                 circles[i].scale(0.99);
+             }
+         }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" resize>
+       
+    </canvas>
+    <p>Press any key!</p>
+</body>
+</html>
+
